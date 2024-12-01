@@ -1,0 +1,5 @@
+export * from "./common"
+export * as Movie from "./movie"
+export * as Reservation from "./reservation"
+export * as Showing from "./showing"
+import "../styles/globals.css"
