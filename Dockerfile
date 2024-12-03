@@ -7,7 +7,7 @@ WORKDIR /srv/app
 RUN corepack enable && \
 	corepack prepare --activate pnpm@latest && \
 	pnpm config -g set store-dir /.pnpm-store && \
-    RUN pnpx playwright install --with-deps
+    pnpx playwright install --with-deps
 
 FROM base AS builder
 
