@@ -1,7 +1,7 @@
 {
-  "name": "cinema-next",
+  "name": "cinema",
   "version": "1.0.0",
-  "description": "",
+  "description": "Component and hook library for cinema app.",
   "type": "module",
   "files": [
     "dist"
@@ -92,7 +92,7 @@
     "react-dom": "^18.3.1"
   },
   "author": "Damian Chojnacki",
-  "license": "ISC",
+  "license": "MIT",
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"

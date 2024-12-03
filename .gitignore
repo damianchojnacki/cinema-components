@@ -27,5 +27,5 @@ yarn-error.log*
 
 /.idea
 /.rollup.cache
-
+/storybook-static
 *storybook.log
