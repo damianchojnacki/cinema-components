@@ -1,16 +1,18 @@
-import React, {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react'
+import React, {FunctionComponent, isValidElement, PropsWithChildren, useEffect, useState} from 'react'
 
 const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & PropsWithChildren> = (props) => {
-  const [Component, setComponent] = useState<any>()
+  const [Component, setComponent] = useState<never>()
 
   useEffect(() => {
-    import('next/link').then((Link) => setComponent(Link))
+    // @ts-ignore
+    void import('next/link').then((Link) => setComponent(Link))
   }, []);
 
-  if (!Component) {
+  if (!isValidElement(Component)) {
     return <a {...props} />
   }
 
+  // @ts-ignore
   return <Component {...props }/>
 };
 

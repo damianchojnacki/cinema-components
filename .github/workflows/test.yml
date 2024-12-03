@@ -1,0 +1,44 @@
+name: E2E
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+  workflow_dispatch: ~
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker images
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          tags: cinema:latest
+          load: true
+          push: false
+#          cache-from: type=gha
+#          cache-to: type=gha,mode=max
+      - name: Run Image
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cinema:latest
+          run: |
+            pnpm lint
+            pnpm test run
+            pnpx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpx http-server storybook-static --port 6006 --silent" \
+            "pnpx wait-on tcp:127.0.0.1:6006 && pnpm test:storybook"
+            
+            
+          

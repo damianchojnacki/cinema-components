@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from "vite-plugin-dts"
+import { coverageConfigDefaults } from 'vitest/config'
 
 export default defineConfig({
     plugins: [react()],
@@ -42,4 +43,11 @@ export default defineConfig({
             ]
         },
     },
+    test: {
+        include: ['**/*.test.ts', '**/*.test.tsx'],
+        environment: 'jsdom',
+        coverage: {
+            exclude: ['src/stories', '*.config*',  ...coverageConfigDefaults.exclude]
+        }
+    }
 })

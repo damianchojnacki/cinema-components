@@ -15,8 +15,9 @@ export const Card: FunctionComponent<Props> = ({ movie }) => {
       onClick={() => update(movie)}
       className={`snap-center flex flex-col items-center justify-center w-fit cursor-pointer shadow transform hover:scale-105 transition ${movie.id === current?.id ? 'ring-2 ring-gray-500' : ''}`}
       role="button"
-      tabIndex={Number(movie.id)}
+      tabIndex={0}
       aria-label={`Select ${movie.title}`}
+      data-testid={`movie-card-${movie.id}`}
       onKeyDown={(e) => {
         if (!['Enter', ' '].includes(e.key)) {
           return

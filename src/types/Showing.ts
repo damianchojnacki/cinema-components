@@ -1,5 +1,5 @@
 export interface Showing {
-  id?: number
+  id?: string
   starts_at?: string
   rows?: number
   columns?: number

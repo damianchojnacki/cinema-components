@@ -107,8 +107,10 @@ export const Form: FunctionComponent<Props> = ({ showingId }) => {
           onChange={(e) => setFormData({...formData, email: e.target.value})}
         />
 
-        <Button type="button" className="mr-2" onClick={previousStep}>Change seats</Button>
-        <Button type="submit" variant="secondary">Submit</Button>
+        <div className="flex gap-2">
+          <Button type="button" onClick={previousStep}>Change seats</Button>
+          <Button type="submit" variant="secondary">Submit</Button>
+        </div>
       </form>
     </div>
   )
