@@ -25,8 +25,8 @@ function getRandomMovies(): Movie[] {
       month: '2-digit',
       day: '2-digit',
     }),
-    poster_url: `https://picsum.photos/seed/${i + 1}/600/800`,
-    backdrop_url: `https://picsum.photos/seed/${i + 1}/1920/1080`,
+    poster_url: `https://picsum.photos/seed/${i + 1}/300/400`,
+    backdrop_url: `https://picsum.photos/seed/${i + 1}/1280/720`,
   }));
 }
 
