@@ -31,10 +31,12 @@ jobs:
           cache-to: type=gha,mode=max
       - name: Run Image
         uses: addnab/docker-run-action@v3
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           image: cinema:latest
-          env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          options: >-
+            --env NODE_AUTH_TOKEN
           run: |
             pnpm build
             npm publish

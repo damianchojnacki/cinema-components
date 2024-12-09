@@ -34,13 +34,13 @@
 
 ```bash
 # Using npm
-npm install cinema
+npm install @damianchojnacki/cinema
 
 # Using yarn
-yarn add cinema
+yarn add @damianchojnacki/cinema
 
 # Using pnpm
-pnpm add cinema
+pnpm add @damianchojnacki/cinema
 ```
 
 ## Usage
@@ -139,7 +139,7 @@ pnpm test
 Generate test coverage reports:
 
 ```bash
-npm run test:coverage
+pnpm test:coverage
 ```
 
 ### Storybook
