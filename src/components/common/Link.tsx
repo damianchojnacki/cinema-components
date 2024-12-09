@@ -1,4 +1,4 @@
-import React, {FunctionComponent, isValidElement, PropsWithChildren, useEffect, useState} from 'react'
+import React, {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react'
 
 const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & PropsWithChildren> = (props) => {
   const [Component, setComponent] = useState<never>()
