@@ -1,5 +1,5 @@
 {
-  "name": "cinema",
+  "name": "@damianchojnacki/cinema",
   "version": "1.0.0",
   "description": "Component and hook library for cinema app.",
   "type": "module",
