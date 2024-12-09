@@ -5,7 +5,7 @@ FROM node_upstream AS base
 WORKDIR /srv/app
 
 RUN corepack enable && \
-	corepack prepare --activate pnpm@latest && \
+	corepack prepare --activate pnpm@9.15.0 && \
 	pnpm config -g set store-dir /.pnpm-store && \
     pnpx playwright install --with-deps
 

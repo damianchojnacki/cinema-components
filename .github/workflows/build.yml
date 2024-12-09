@@ -35,11 +35,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           image: cinema:latest
-          options: >-
-            --env NODE_AUTH_TOKEN
+          options: -e NODE_AUTH_TOKEN
           run: |
             pnpm build
-            pnpm publish
-            
-            
-          
+            git diff
+            pnpm publish --provenance --access public
