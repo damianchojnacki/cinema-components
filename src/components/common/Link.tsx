@@ -8,7 +8,7 @@ const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & Pr
     void import('next/link').then((Link) => setComponent(Link))
   }, []);
 
-  if (!isValidElement(Component)) {
+  if (!Component) {
     return <a {...props} />
   }
 
