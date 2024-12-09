@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import { Movie } from '@/types/Movie'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
 
-interface Props {
+export interface Props {
   movie: Movie
 }
 

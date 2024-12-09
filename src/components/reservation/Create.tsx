@@ -14,7 +14,7 @@ import { Movie } from '@/types/Movie'
 import QueryClientProvider from "@/components/common/QueryClientProvider";
 import {QueryClient} from "@tanstack/react-query";
 
-interface Props {
+export interface Props {
   showing: Showing
   movie: Movie
   queryClient: QueryClient

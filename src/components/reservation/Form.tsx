@@ -9,7 +9,7 @@ import { Alert } from '@/components/ui/alert'
 import { Summary } from '@/components/reservation/Summary'
 import { useApiClient } from '@/lib/hooks/useApiClient'
 
-interface Props {
+export interface Props {
   showingId: string
 }
 

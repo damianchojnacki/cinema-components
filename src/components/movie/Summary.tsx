@@ -8,7 +8,7 @@ export interface Props {
 export const Summary: FunctionComponent<Props> = ({ movie }) => {
   return (
     <>
-      <h2 className="text-6xl sm:text-8xl mb-2">{movie.title}</h2>
+      <h1 className="text-4xl xs:text-6xl sm:text-8xl mb-2">{movie.title}</h1>
 
       <p className="md:w-1/2 mb-2 text-sm md:text-base">{movie.description}</p>
 

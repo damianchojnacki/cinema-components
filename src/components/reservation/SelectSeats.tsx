@@ -4,7 +4,7 @@ import { Showing } from '@/types/Showing'
 import { Button } from '@/components/ui/button'
 import { useReservation } from '@/lib/hooks/useReservation'
 
-interface Props {
+export interface Props {
   showing: Showing
 }
 

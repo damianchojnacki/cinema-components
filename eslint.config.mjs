@@ -13,6 +13,8 @@ export default [
             'dist/**',
             'node_modules/**',
             'coverage/**',
+            // 'src/stories/**',
+            // 'tests/**',
             'tailwind.config.js',
             'postcss.config.cjs',
             'eslint.config.mjs',

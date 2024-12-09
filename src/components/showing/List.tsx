@@ -6,7 +6,7 @@ import Link from '@/components/common/Link'
 import { Button } from '@/components/ui/button'
 import { useRoutes } from '@/lib/hooks/useRoutes'
 
-interface Props {
+export interface Props {
   showings: Showing[]
 }
 
@@ -38,11 +38,11 @@ export const List: FunctionComponent<Props> = ({ showings }) => {
 
   return (
     <div className="mt-6">
-      <h1 className="text-2xl font-bold mb-4">Upcoming showings</h1>
+      <h2 className="text-2xl font-bold mb-4">Upcoming showings</h2>
 
       {Object.entries(groupedShowings).map(([date, showings]) => (
         <div key={date} className="mb-6">
-          <h2 className="text-xl font-semibold mb-2 border-b pb-2">{date}</h2>
+          <p className="text-xl font-semibold mb-2 border-b pb-2">{date}</p>
 
           <div className="flex gap-4">
             {showings.map((showing) => (

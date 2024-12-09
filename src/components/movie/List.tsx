@@ -1,9 +1,10 @@
-import React, { UIEvent, FunctionComponent } from 'react'
+import React, {UIEvent, FunctionComponent, useState, useCallback} from 'react'
 import { Movie } from '@/types/Movie'
 import { Card } from '@/components/movie/Card'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
+import throttle from 'lodash/throttle'
 
-interface Props {
+export interface Props {
   movies: Movie[]
   handleLoadNextPage: () => void
 }
@@ -11,8 +12,23 @@ interface Props {
 export const List: FunctionComponent<Props> = ({ movies, handleLoadNextPage }) => {
   const { update } = useCurrentMovie()
 
+  const [isScrolled, setIsScrolled] = useState<boolean>(false)
+
+  const throttledLoadNextPage = useCallback(
+    throttle(() => handleLoadNextPage(), 1000),
+    [handleLoadNextPage]
+  )
+
   const updateCurrentMovie = (cardHeight: number, eventTarget: HTMLDivElement) => {
     const { scrollTop, offsetHeight, children } = eventTarget
+
+    if(scrollTop > 10 && !isScrolled) {
+      setIsScrolled(true)
+    }
+
+    if(scrollTop == 0 && isScrolled) {
+      setIsScrolled(false)
+    }
 
     const movieCardWidth = children[0]?.children?.[0]?.clientWidth + 8 // width and gap
 
@@ -50,22 +66,22 @@ export const List: FunctionComponent<Props> = ({ movies, handleLoadNextPage }) =
       return
     }
 
-    handleLoadNextPage()
+    throttledLoadNextPage()
   }
 
   return (
-    <div className="absolute bottom-0 w-full">
+    <div className="w-full transform translate-y-4">
       <div className="relative">
         <div className="flex justify-between items-center">
-          <h1 className="p-4 xl:px-8 text-3xl z-20 transform">Currently playing</h1>
+          <h2 className={`px-4 xl:px-8 text-xl xs:text-3xl transition-all duration-150 ${isScrolled ? 'py-2 -mt-4 lg:py-8 lg:-mt-16' : ''}`}>Currently playing</h2>
         </div>
 
         <div
           onScroll={handleScroll}
           data-testid="movie-list"
-          className="px-4 xl:px-8 snap-y snap-mandatory overflow-scroll h-[calc(80vw)] sm:h-[calc(55vw)] md:h-[calc(40vw)] xl:h-[calc(27vw)] w-full scroll-smooth scrollbar-hidden py-10"
+          className="px-4 xl:px-8 py-5 sm:py-10 snap-y snap-mandatory overflow-scroll h-[80vw] sm:h-[55vw] md:h-[40vw] xl:h-[27vw] w-full scroll-smooth scrollbar-hidden"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 place-items-center">
+          <div className="grid grid-cols-2 landscape:max-sm:grid-cols-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-4 place-items-center">
             {movies.map((movie) => (
               <Card key={movie.id} movie={movie} />
             ))}

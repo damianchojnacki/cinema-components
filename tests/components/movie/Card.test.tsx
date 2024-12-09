@@ -3,14 +3,13 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { expect, vi, test, beforeEach, afterEach } from 'vitest'
 import { Card } from '@/components/movie/Card'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
-import { Movie } from '@/types/Movie'
 import movieFactory from "../../factories/movieFactory";
 
 vi.mock('@/lib/hooks/useCurrentMovie', () => ({
   useCurrentMovie: vi.fn()
 }))
 
-const mockMovie: Movie = movieFactory.create()
+const mockMovie = movieFactory.create()
 
 const mockUpdate = vi.fn()
 const mockCurrentMovie = { movie: null, update: mockUpdate }

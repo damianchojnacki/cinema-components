@@ -39,7 +39,9 @@ export default defineConfig({
                 },
             },
             plugins: [
-                dts(),
+                dts({
+                    tsconfigPath: 'tsconfig.build.json',
+                }),
             ]
         },
     },

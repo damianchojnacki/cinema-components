@@ -78,6 +78,7 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
       screens: {
+        xs: '414px',
         xxl: '1600px',
         fhd: '1920px',
         '2k': '2560px',
