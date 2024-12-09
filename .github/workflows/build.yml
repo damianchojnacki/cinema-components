@@ -1,15 +1,8 @@
 name: Build
 
 on:
-  workflow_run:
-    workflows: [ test ]
-    types: [ completed ]
-    branches: [ main ]
-  workflow_dispatch:
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -29,7 +22,7 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Run Image
+      - name: Build and publish
         uses: addnab/docker-run-action@v3
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
