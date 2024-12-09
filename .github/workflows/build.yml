@@ -32,11 +32,11 @@ jobs:
       - name: Run Image
         uses: addnab/docker-run-action@v3
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           image: cinema:latest
-          options: -e NODE_AUTH_TOKEN
+          options: -e NPM_TOKEN
           run: |
             pnpm build
-            git diff
+            printf "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nregistry=https://registry.npmjs.org/\nalways-auth=true" > ~/.npmrc
             pnpm publish --provenance --access public
