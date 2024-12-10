@@ -42,3 +42,19 @@ export const Default: Story = {
     }
   ],
 };
+
+export const Skeleton: Story = {
+  decorators: [
+    (Story) => {
+      const {update} = useCurrentMovie()
+
+      useEffect(() => update(null), []);
+
+      return (
+        <Layout>
+          <Story />
+        </Layout>
+      )
+    }
+  ],
+};
