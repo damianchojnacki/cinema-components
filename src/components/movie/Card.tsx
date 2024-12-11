@@ -34,7 +34,6 @@ export const Card: FunctionComponent<Props> = ({ movie }) => {
         src={`${movie.poster_url}?w=192&fm=webp`}
         srcSet={`${movie.poster_url}?w=192&fm=webp 640w, ${movie.poster_url}?w=384&fm=webp 1200w`}
         alt={`${movie.title} poster`}
-        loading="lazy"
       />
     </div>
   )
