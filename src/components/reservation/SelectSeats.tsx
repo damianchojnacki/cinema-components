@@ -45,7 +45,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
   return (
     <div className="w-full md:w-fit">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium my-4 p-1" suppressHydrationWarning>
+        <h2 className="xs:text-lg font-medium my-4 p-1" suppressHydrationWarning>
           {`Showtime: ${new Date(showing.starts_at ?? Date.now()).toLocaleString(['en-US'], {
             dateStyle: 'medium',
             timeStyle: 'short'
@@ -56,7 +56,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
       </div>
 
       <div
-        className="grid w-full md:w-fit mx-auto md:mx-0 max-w-[93vw] overflow-x-auto gap-2 place-items-center p-1"
+        className="grid w-full md:w-fit md:mx-0 max-w-[93vw] overflow-x-auto gap-2 place-items-center p-1"
         style={{
           gridTemplateRows: `repeat(${showing.rows}, 1fr)`,
           gridTemplateColumns: `repeat(${showing.columns}, 1fr)`
@@ -70,7 +70,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
             return (
               <button
                 key={`${row}-${col}`}
-                className={`w-16 h-16 font-bold rounded-lg focus:outline-none
+                className={`w-14 h-14 sm:w-16 sm:h-16 font-bold rounded-lg focus:outline-none
                   ${isTaken
                     ? 'bg-gray-500 text-white cursor-not-allowed'
                   : isSelected

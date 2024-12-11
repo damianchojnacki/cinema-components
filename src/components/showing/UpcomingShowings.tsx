@@ -17,7 +17,7 @@ export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) 
   const routes = useRoutes()
 
   return (
-    <div className="relative overflow-y-auto overflow-x-hidden h-screen">
+    <div className="relative overflow-y-auto overflow-x-hidden">
       <Backdrop movie={movie} />
 
       <div className="absolute top-[20%] px-4 xl:px-8">

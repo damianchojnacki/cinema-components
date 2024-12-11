@@ -44,13 +44,13 @@ export const List: FunctionComponent<Props> = ({ showings }) => {
         <div key={date} className="mb-6">
           <p className="text-xl font-semibold mb-2 border-b pb-2">{date}</p>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2 sm:gap-4 flex-wrap">
             {showings.map((showing) => (
               <Link
                 href={routes?.getShowingPath(movieId as string, String(showing.id)) ?? ''}
                 key={showing.id}
               >
-                <Button variant="secondary" className="text-sm font-medium" suppressHydrationWarning>
+                <Button variant="secondary" className="text-xs sm:text-sm font-bold sm:font-medium" suppressHydrationWarning>
                   {new Date(showing.starts_at ?? Date.now()).toLocaleTimeString(['en-US'], { hour: '2-digit', minute: '2-digit' })}
                 </Button>
               </Link>

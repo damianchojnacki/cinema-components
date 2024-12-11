@@ -9,7 +9,7 @@ export interface Props {
 export const Backdrop: FunctionComponent<Props> = ({ movie }) => {
   return (
     <div className="blur-[5px] sm:filter-none">
-      <div className="absolute bg-gradient-to-b from-transparent via-gray-950/80 to-gray-950 h-screen w-full top-0 left-0" />
+      <div className="absolute bg-gradient-to-b from-gray-950/20 via-gray-950/80 to-gray-950 h-screen w-full top-0 left-0" />
 
       <img
         src={`${movie.backdrop_url}?w=1280&fm=webp&q=80`}

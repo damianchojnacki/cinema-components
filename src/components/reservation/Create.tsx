@@ -48,14 +48,14 @@ export const Create: FunctionComponent<Props> = ({ showing, movie, queryClient }
   }
 
   return (
-    <div className="relative overflow-y-auto overflow-x-hidden h-screen">
+    <div className="relative overflow-y-auto overflow-x-hidden">
       <Backdrop movie={movie} />
 
-      <div className="absolute top-[20%] px-4 xl:px-8 pb-4">
+      <div className="absolute top-[10%] sm:top-[20%] px-4 xl:px-8 pb-4 w-full">
         <Summary movie={movie} />
 
         <Link href={routes?.getMovieShowingsPath(id as string) ?? ''} className="block md:inline text-center mb-4">
-          <Button size="lg" variant="default" className="text-lg font-bold">
+          <Button size="lg" variant="default" className="text-lg font-bold whitespace-normal h-auto py-2">
             <svg
               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
               stroke="currentColor" className="size-6"
