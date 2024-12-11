@@ -32,4 +32,4 @@ jobs:
           run: |
             pnpm build
             printf "//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nregistry=https://registry.npmjs.org/\nalways-auth=true" > ~/.npmrc
-            pnpm publish --access public
+            pnpm publish --access public --no-git-checks
