@@ -16,7 +16,7 @@ export const Summary: FunctionComponent<Props> = ({ movie }) => {
 
   return (
     <>
-      <h1 className="text-4xl xs:text-6xl sm:text-8xl mb-2">
+      <h1 className="text-3xl xs:text-6xl sm:text-8xl mb-2">
         {movie.title}
       </h1>
 
