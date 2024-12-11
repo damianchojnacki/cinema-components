@@ -11,8 +11,8 @@ import { useReservation } from '@/lib/hooks/useReservation'
 import { Show } from '@/components/reservation/Show'
 import { useRoutes } from '@/lib/hooks/useRoutes'
 import { Movie } from '@/types/Movie'
-import QueryClientProvider from "@/components/common/QueryClientProvider";
-import {QueryClient} from "@tanstack/react-query";
+import QueryClientProvider from "@/components/common/QueryClientProvider"
+import {QueryClient} from "@tanstack/react-query"
 
 export interface Props {
   showing: Showing

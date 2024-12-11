@@ -1,4 +1,4 @@
-import {List} from "@/components/showing/List";
-import {UpcomingShowings} from "@/components/showing/UpcomingShowings";
+import {List} from "@/components/showing/List"
+import {UpcomingShowings} from "@/components/showing/UpcomingShowings"
 
-export {List, UpcomingShowings};
+export {List, UpcomingShowings}

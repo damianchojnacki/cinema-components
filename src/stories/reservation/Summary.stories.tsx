@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Summary } from '@/components/reservation/Summary';
-import Layout from "@/components/common/Layout";
-import {useReservation} from "@/lib/hooks";
-import {useEffect} from "react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Summary } from '@/components/reservation/Summary'
+import Layout from "@/components/common/Layout"
+import {useReservation} from "@/lib/hooks"
+import {useEffect} from "react"
 
 const meta = {
   title: 'Reservation/Summary',
@@ -16,11 +16,11 @@ const meta = {
       <Summary />
     </Layout>
   )
-} satisfies Meta<typeof Summary>;
+} satisfies Meta<typeof Summary>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const seats = [
   [0, 1],
@@ -32,11 +32,11 @@ export const Default: Story = {
     (Story) => {
       const {selectSeats} = useReservation()
 
-      useEffect(() => selectSeats(seats), []);
+      useEffect(() => selectSeats(seats), [])
 
       return (
         <Story />
       )
     }
   ],
-};
+}

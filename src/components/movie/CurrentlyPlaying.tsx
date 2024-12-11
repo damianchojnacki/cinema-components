@@ -1,9 +1,9 @@
 import { Backdrop } from '@/components/movie/Backdrop'
 import React, {FunctionComponent, useEffect} from 'react'
 import { Movie } from '@/types/Movie'
-import {useCurrentMovie} from "@/lib/hooks";
-import {List} from "@/components/movie/List";
-import {Current} from "@/components/movie/Current";
+import {useCurrentMovie} from "@/lib/hooks"
+import {List} from "@/components/movie/List"
+import {Current} from "@/components/movie/Current"
 
 export interface Props {
   movies: Movie[]
@@ -21,7 +21,7 @@ export const CurrentlyPlaying: FunctionComponent<Props> = ({ movies, handleLoadN
     }
 
     update(movies[0])
-  }, [movies]);
+  }, [movies])
 
   return (
     <div className="relative portrait:overflow-hidden landscape:lg:overflow-hidden overflow-x-hidden h-dvh">

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Label } from '@/components/ui/label';
-import {Input} from "@/components/ui/input";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Label } from '@/components/ui/label'
+import {Input} from "@/components/ui/input"
 
 const meta = {
   title: 'UI/Label',
@@ -14,16 +14,16 @@ const meta = {
       control: 'text',
     }
   }
-} satisfies Meta<typeof Label>;
+} satisfies Meta<typeof Label>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
     children: 'Name'
   }
-};
+}
 
 export const WithInput: Story = {
   args: {
@@ -36,5 +36,5 @@ export const WithInput: Story = {
       <Input placeholder="Name" />
     </>
   )
-};
+}
 

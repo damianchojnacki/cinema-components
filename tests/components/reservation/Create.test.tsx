@@ -8,7 +8,7 @@ import { useReservation } from '@/lib/hooks/useReservation'
 import { Showing } from '@/types/Showing'
 import { Movie } from '@/types/Movie'
 import { QueryClient } from '@tanstack/react-query'
-import movieFactory from "../../factories/movieFactory";
+import movieFactory from "../../factories/movieFactory"
 
 // Mock dependencies
 vi.mock('@/components/common/useRouter', () => ({

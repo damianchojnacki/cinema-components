@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Show } from '@/components/reservation/Show';
-import {Reservation} from "@/types/Reservation";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Show } from '@/components/reservation/Show'
+import {Reservation} from "@/types/Reservation"
 
 const meta = {
   title: 'Reservation/Show',
@@ -9,11 +9,11 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof Show>;
+} satisfies Meta<typeof Show>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const reservation: Reservation = {
   id: '1',
@@ -27,4 +27,4 @@ export const Default: Story = {
   args: {
     reservation
   }
-};
+}

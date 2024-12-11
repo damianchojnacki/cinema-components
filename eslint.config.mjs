@@ -39,6 +39,7 @@ export default [
         },
         rules: {
             '@stylistic/jsx-quotes': ['warn', 'prefer-double'],
+            '@stylistic/semi': ['warn', 'never'],
         }
     },
     {

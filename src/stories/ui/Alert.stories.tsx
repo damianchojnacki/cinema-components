@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert';
+import type { Meta, StoryObj } from '@storybook/react'
+import {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert'
 
 const meta = {
   title: 'UI/Alert',
@@ -17,23 +17,23 @@ const meta = {
       ]
     }
   }
-} satisfies Meta<typeof Alert>;
+} satisfies Meta<typeof Alert>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
     children: 'Lorem ipsum dolor sit amet',
   }
-};
+}
 
 export const Destructive: Story = {
   args: {
     children: 'Lorem ipsum dolor sit amet',
     variant: 'destructive'
   }
-};
+}
 
 export const WithTitle: Story = {
   render: () => (
@@ -42,5 +42,5 @@ export const WithTitle: Story = {
       <AlertDescription>Excepteur sint occaecat cupidatat non proident.</AlertDescription>
     </Alert>
   )
-};
+}
 

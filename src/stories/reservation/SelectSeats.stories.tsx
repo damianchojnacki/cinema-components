@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { SelectSeats } from '@/components/reservation/SelectSeats';
-import { faker } from '@faker-js/faker';
-import Layout from "@/components/common/Layout";
+import type { Meta, StoryObj } from '@storybook/react'
+import { SelectSeats } from '@/components/reservation/SelectSeats'
+import { faker } from '@faker-js/faker'
+import Layout from "@/components/common/Layout"
 
 const meta = {
   title: 'Reservation/SelectSeats',
@@ -15,11 +15,11 @@ const meta = {
       <SelectSeats showing={showing} />
     </Layout>
   )
-} satisfies Meta<typeof SelectSeats>;
+} satisfies Meta<typeof SelectSeats>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const showing = {
   id: '1',
@@ -35,4 +35,4 @@ export const Default: Story = {
   args: {
     showing,
   },
-};
+}

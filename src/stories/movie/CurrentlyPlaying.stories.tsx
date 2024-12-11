@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { CurrentlyPlaying } from '@/components/movie/CurrentlyPlaying';
-import Layout from "@/components/common/Layout";
-import { faker } from '@faker-js/faker';
-import {Movie} from "@/types/Movie";
-import {expect, userEvent, within} from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react'
+import { CurrentlyPlaying } from '@/components/movie/CurrentlyPlaying'
+import Layout from "@/components/common/Layout"
+import { faker } from '@faker-js/faker'
+import {Movie} from "@/types/Movie"
+import {expect, userEvent, within} from "@storybook/test"
 
 const meta = {
   title: 'Movie/CurrentlyPlaying',
@@ -11,10 +11,10 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof CurrentlyPlaying>;
+} satisfies Meta<typeof CurrentlyPlaying>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 function getRandomMovies(): Movie[] {
   return Array.from({length: 12}).map((_, i) => ({
@@ -29,7 +29,7 @@ function getRandomMovies(): Movie[] {
     }),
     poster_url: `https://picsum.photos/seed/${i + 1}/300/400`,
     backdrop_url: `https://picsum.photos/seed/${i + 1}/1280/720`,
-  }));
+  }))
 }
 
 export const Default: Story = {
@@ -44,7 +44,7 @@ export const Default: Story = {
     </Layout>
   ),
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement)
 
     await expect(
       canvas.getByTestId('movie-card-1')
@@ -64,4 +64,4 @@ export const Default: Story = {
       canvas.getByTestId('movie-card-7')
     ).toHaveClass('ring-2')
   },
-};
+}

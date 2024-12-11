@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Current } from '@/components/movie/Current';
-import {useCurrentMovie} from "@/lib/hooks";
-import {useEffect} from "react";
-import {Layout} from "@/components/common";
-import {Movie} from "@/types";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Current } from '@/components/movie/Current'
+import {useCurrentMovie} from "@/lib/hooks"
+import {useEffect} from "react"
+import {Layout} from "@/components/common"
+import {Movie} from "@/types"
 
 const meta = {
   title: 'Movie/Current',
@@ -12,10 +12,10 @@ const meta = {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Current>;
+} satisfies Meta<typeof Current>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 const movie: Movie = {
   id: '1',
@@ -32,7 +32,7 @@ export const Default: Story = {
     (Story) => {
       const {update} = useCurrentMovie()
 
-      useEffect(() => update(movie), []);
+      useEffect(() => update(movie), [])
 
       return (
         <Layout>
@@ -41,14 +41,14 @@ export const Default: Story = {
       )
     }
   ],
-};
+}
 
 export const Skeleton: Story = {
   decorators: [
     (Story) => {
       const {update} = useCurrentMovie()
 
-      useEffect(() => update(null), []);
+      useEffect(() => update(null), [])
 
       return (
         <Layout>
@@ -57,4 +57,4 @@ export const Skeleton: Story = {
       )
     }
   ],
-};
+}

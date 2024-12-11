@@ -6,7 +6,7 @@ const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & Pr
   useEffect(() => {
     // @ts-ignore
     void import('next/link').then((Link) => setComponent(Link))
-  }, []);
+  }, [])
 
   if (!Component) {
     return <a {...props} />
@@ -14,6 +14,6 @@ const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & Pr
 
   // @ts-ignore
   return <Component {...props }/>
-};
+}
 
 export default Link

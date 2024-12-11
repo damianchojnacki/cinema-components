@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Create } from '@/components/reservation/Create';
-import { faker } from '@faker-js/faker';
-import Layout from "@/components/common/Layout";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
-import {Movie, Showing} from "@/types";
-import {expect, userEvent, within} from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Create } from '@/components/reservation/Create'
+import { faker } from '@faker-js/faker'
+import Layout from "@/components/common/Layout"
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
+import {Movie, Showing} from "@/types"
+import {expect, userEvent, within} from "@storybook/test"
 
 const meta = {
   title: 'Reservation/Create',
@@ -18,11 +18,11 @@ const meta = {
       <Create showing={showing} movie={movie} queryClient={queryClient} />
     </Layout>
   )
-} satisfies Meta<typeof Create>;
+} satisfies Meta<typeof Create>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const showing: Showing = {
   id: '1',
@@ -59,40 +59,40 @@ export const Default: Story = {
       )
     }
   ],
-};
+}
 
 export const SelectSeats: Story = {
   ...Default,
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement)
 
     await userEvent.click(canvas.getByText('1-3'), {
       delay: 500
-    });
+    })
 
     await userEvent.click(canvas.getByText('1-4'), {
       delay: 500
-    });
+    })
 
-    await userEvent.click(canvas.getByText('Next'));
+    await userEvent.click(canvas.getByText('Next'))
 
     // 👇 Assert DOM structure
     await expect(
       canvas.getByText(
         'Selected seats:'
       )
-    ).toBeInTheDocument();
+    ).toBeInTheDocument()
 
     await expect(
       canvas.getByText(
         '1-3'
       )
-    ).toBeInTheDocument();
+    ).toBeInTheDocument()
 
     await expect(
       canvas.getByText(
         '1-4'
       )
-    ).toBeInTheDocument();
+    ).toBeInTheDocument()
   },
-};
+}

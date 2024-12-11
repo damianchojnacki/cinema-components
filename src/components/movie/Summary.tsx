@@ -12,7 +12,7 @@ export const Summary: FunctionComponent<Props> = ({ movie }) => {
 
   useEffect(() => {
     setShowFullDescription((movie.description?.length ?? 0) < descriptionLimit)
-  }, [movie]);
+  }, [movie])
 
   return (
     <>

@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { List } from '@/components/movie/List';
-import { faker } from '@faker-js/faker';
-import {Movie} from "@/types/Movie";
+import type { Meta, StoryObj } from '@storybook/react'
+import { List } from '@/components/movie/List'
+import { faker } from '@faker-js/faker'
+import {Movie} from "@/types/Movie"
 
 const meta = {
   title: 'Movie/List',
@@ -9,10 +9,10 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-} satisfies Meta<typeof List>;
+} satisfies Meta<typeof List>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 function getRandomMovies(): Movie[] {
   return Array.from({length: 12}).map((_, i) => ({
@@ -27,7 +27,7 @@ function getRandomMovies(): Movie[] {
     }),
     poster_url: `https://picsum.photos/seed/${i + 1}/300/400`,
     backdrop_url: `https://picsum.photos/seed/${i + 1}/1280/720`,
-  }));
+  }))
 }
 
 export const Default: Story = {
@@ -36,5 +36,5 @@ export const Default: Story = {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     handleLoadNextPage: () => {}
   },
-};
+}
 

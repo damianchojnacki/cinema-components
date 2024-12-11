@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Form } from '@/components/reservation/Form';
-import Layout from "@/components/common/Layout";
-import {useReservation} from "@/lib/hooks";
-import {useEffect, useState} from "react";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Form } from '@/components/reservation/Form'
+import Layout from "@/components/common/Layout"
+import {useReservation} from "@/lib/hooks"
+import {useEffect, useState} from "react"
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 
 const meta = {
   title: 'Reservation/Form',
@@ -17,11 +17,11 @@ const meta = {
       <Form showingId={showingId} />
     </Layout>
   )
-} satisfies Meta<typeof Form>;
+} satisfies Meta<typeof Form>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 const seats = [
   [0, 1]
@@ -37,7 +37,7 @@ export const Default: Story = {
 
       const {selectSeats} = useReservation()
 
-      useEffect(() => selectSeats(seats), []);
+      useEffect(() => selectSeats(seats), [])
 
       return (
         <QueryClientProvider client={queryClient}>
@@ -46,4 +46,4 @@ export const Default: Story = {
       )
     }
   ],
-};
+}

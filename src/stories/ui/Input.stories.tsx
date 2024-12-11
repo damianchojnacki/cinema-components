@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from '@/components/ui/input';
-import {Label} from "@/components/ui";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Input } from '@/components/ui/input'
+import {Label} from "@/components/ui"
 
 const meta = {
   title: 'UI/Input',
@@ -9,16 +9,16 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Input>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
     placeholder: 'Name'
   }
-};
+}
 
 export const WithLabel: Story = {
   args: {
@@ -31,5 +31,5 @@ export const WithLabel: Story = {
       <Input {...props} />
     </>
   )
-};
+}
 

@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
 import { expect, test, afterEach } from 'vitest'
-import movieFactory from "../../factories/movieFactory";
+import movieFactory from "../../factories/movieFactory"
 
 afterEach(() => {
   act(() => {

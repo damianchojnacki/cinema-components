@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState} from "react"
 
 interface Router {
   useRouter: () => {
@@ -11,7 +11,7 @@ export const useRouter = () => {
 
   useEffect(() => {
     void import('next/router').then((router) => setRouter(router))
-  }, []);
+  }, [])
 
   return router.useRouter()
-};
+}

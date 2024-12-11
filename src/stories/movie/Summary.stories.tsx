@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Summary } from '@/components/movie/Summary';
-import {expect, userEvent, within} from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/react'
+import { Summary } from '@/components/movie/Summary'
+import {expect, userEvent, within} from "@storybook/test"
 
 const meta = {
   title: 'Movie/Summary',
@@ -9,10 +9,10 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof Summary>;
+} satisfies Meta<typeof Summary>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
@@ -28,7 +28,7 @@ export const Default: Story = {
     },
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement)
 
     await expect(
       canvas.getByTestId('movie-description').innerText
@@ -40,4 +40,4 @@ export const Default: Story = {
       canvas.getByTestId('movie-description').innerText
     ).toHaveLength(334)
   },
-};
+}
