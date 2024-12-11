@@ -8,7 +8,7 @@ export interface Props {
 export const Summary: FunctionComponent<Props> = ({ movie }) => {
   const [showFullDescription, setShowFullDescription] = useState(false)
 
-  const descriptionLimit = 300
+  const descriptionLimit = 200
 
   useEffect(() => {
     setShowFullDescription((movie.description?.length ?? 0) < descriptionLimit)
