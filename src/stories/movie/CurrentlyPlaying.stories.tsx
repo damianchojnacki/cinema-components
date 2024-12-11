@@ -20,7 +20,7 @@ function getRandomMovies(): Movie[] {
   return Array.from({length: 12}).map((_, i) => ({
     id: (i + 1).toString(),
     title: faker.lorem.sentence({min: 1, max: 4}),
-    description: faker.lorem.lines(3),
+    description: faker.lorem.lines({min: 3, max: 10}),
     rating: faker.number.float({min: 1, max: 9, fractionDigits: 1}).toString(),
     release_date: faker.date.future().toLocaleDateString(['en-US'], {
       year: 'numeric',

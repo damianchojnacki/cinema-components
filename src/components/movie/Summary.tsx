@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, {FunctionComponent, useEffect, useState} from 'react'
 import { Movie } from '@/types/Movie'
 
 export interface Props {
@@ -6,11 +6,28 @@ export interface Props {
 }
 
 export const Summary: FunctionComponent<Props> = ({ movie }) => {
+  const [showFullDescription, setShowFullDescription] = useState(false)
+
+  const descriptionLimit = 300
+
+  useEffect(() => {
+    setShowFullDescription((movie.description?.length ?? 0) < descriptionLimit)
+  }, [movie]);
+
   return (
     <>
-      <h1 className="text-4xl xs:text-6xl sm:text-8xl mb-2">{movie.title}</h1>
+      <h1 className="text-4xl xs:text-6xl sm:text-8xl mb-2">
+        {movie.title}
+      </h1>
 
-      <p className="md:w-1/2 mb-2 text-sm md:text-base">{movie.description}</p>
+      <p className="md:w-1/2 mb-2 text-sm md:text-base" data-testid="movie-description">
+        {showFullDescription ? movie.description : (
+          <>
+            {movie.description?.substring(0, descriptionLimit)}
+            <button className="font-bold" onClick={() => setShowFullDescription(true)} data-testid="movie-description-expand">...</button>
+          </>
+        )}
+      </p>
 
       <p className="flex items-center gap-1 font-medium mb-4">
         <svg
