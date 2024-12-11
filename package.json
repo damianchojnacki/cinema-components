@@ -1,6 +1,6 @@
 {
   "name": "@damianchojnacki/cinema",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Component and hook library for cinema app.",
   "type": "module",
   "files": [
