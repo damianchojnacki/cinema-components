@@ -24,7 +24,7 @@ export const CurrentlyPlaying: FunctionComponent<Props> = ({ movies, handleLoadN
   }, [movies]);
 
   return (
-    <div className="relative portrait:overflow-hidden landscape:lg:overflow-hidden overflow-x-hidden h-screen">
+    <div className="relative portrait:overflow-hidden landscape:lg:overflow-hidden overflow-x-hidden h-dvh">
       {movie ? (
         <Backdrop movie={movie} />
       ): null}

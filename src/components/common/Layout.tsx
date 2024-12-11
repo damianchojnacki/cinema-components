@@ -9,7 +9,7 @@ const Layout = ({
   className?: string
 }) => {
   return (
-    <main className={cn('bg-gray-950 text-white min-h-screen', className)}>
+    <main className={cn('bg-gray-950 text-white min-h-dvh', className)}>
       {children}
     </main>
   )
