@@ -29,7 +29,7 @@ export const CurrentlyPlaying: FunctionComponent<Props> = ({ movies, handleLoadN
         <Backdrop movie={movie} />
       ): null}
 
-      <div className="absolute top-[1rem] pb-4 flex flex-col h-[calc(100%-1rem)]">
+      <div className="absolute top-[1rem] pb-4 flex flex-col h-[calc(100%-1rem)] w-full">
         <Current />
 
         <List movies={movies} handleLoadNextPage={handleLoadNextPage} />
