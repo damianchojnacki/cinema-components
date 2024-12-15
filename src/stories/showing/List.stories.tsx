@@ -11,9 +11,9 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  render: ({showings}) => (
+  render: ({movieId, showings}) => (
     <Layout className="!min-h-0 p-5 rounded-lg">
-      <List showings={showings} />
+      <List movieId={movieId} showings={showings} />
     </Layout>
   )
 } satisfies Meta<typeof List>
@@ -30,6 +30,7 @@ function getRandomShowings(): Showing[] {
 
 export const Default: Story = {
   args: {
+    movieId: '1',
     showings: getRandomShowings(),
   },
 }

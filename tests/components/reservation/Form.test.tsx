@@ -1,23 +1,28 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react'
 import { vi, test, beforeEach, afterEach, expect } from 'vitest'
-import {ApiError, Form} from '@/components/reservation/Form'
+import {Form} from '@/components/reservation/Form'
 import { useReservation } from '@/lib/hooks/useReservation'
-import { useApiClient } from '@/lib/hooks/useApiClient'
-import {useMutation, UseMutationResult} from '@tanstack/react-query'
+import {useCinema, ApiError} from '@/lib/hooks/useCinema'
+import {useCreateReservation} from '@/lib/hooks/useCreateReservation'
 
 // Mock hooks and components
 vi.mock('@/lib/hooks/useReservation', () => ({
   useReservation: vi.fn()
 }))
-vi.mock('@/lib/hooks/useApiClient', () => ({
-  useApiClient: vi.fn()
-}))
+vi.mock('@/lib/hooks/useCinema', async (importOriginal) => {
+  const actual = await importOriginal()
+
+  return {
+    ...actual as object,
+    useCinema: vi.fn(),
+  }
+})
 vi.mock('@/components/reservation/Summary', () => ({
   Summary: () => <div data-testid="summary" />
 }))
-vi.mock('@tanstack/react-query', () => ({
-  useMutation: vi.fn()
+vi.mock('@/lib/hooks/useCreateReservation', () => ({
+  useCreateReservation: vi.fn()
 }))
 
 beforeEach(() => {
@@ -37,13 +42,16 @@ test('renders form components and Summary', () => {
     nextStep: vi.fn(),
     previousStep: vi.fn()
   })
-  vi.mocked(useApiClient).mockReturnValue({
-    createReservation: vi.fn()
+  vi.mocked(useCinema).mockReturnValue({
+    apiClient: {
+      createReservation: vi.fn()
+    }
   })
-  vi.mocked(useMutation).mockReturnValue({
+  vi.mocked(useCreateReservation).mockReturnValue({
     mutate: vi.fn(),
-    error: null
-  } as unknown as UseMutationResult)
+    error: null,
+    data: null,
+  })
 
   // Act
   render(<Form showingId="123" />)
@@ -65,13 +73,16 @@ test('submits form data and calls mutate function', async () => {
     nextStep: mockNextStep,
     previousStep: vi.fn()
   })
-  vi.mocked(useApiClient).mockReturnValue({
-    createReservation: vi.fn()
+  vi.mocked(useCinema).mockReturnValue({
+    apiClient: {
+      createReservation: vi.fn()
+    }
   })
-  vi.mocked(useMutation).mockReturnValue({
+  vi.mocked(useCreateReservation).mockReturnValue({
     mutate: mockMutate,
-    error: null
-  } as unknown as UseMutationResult)
+    error: null,
+    data: null,
+  })
 
   // Act
   render(<Form showingId="123" />)
@@ -82,7 +93,7 @@ test('submits form data and calls mutate function', async () => {
 
   // Assert
   await waitFor(() => {
-    expect(mockMutate).toHaveBeenCalledWith({
+    expect(mockMutate).toHaveBeenCalledWith('123', {
       email: 'test@example.com',
       seats: [[1, 2]]
     })
@@ -106,17 +117,14 @@ test('calls previousStep when "Change seats" is clicked', () => {
 })
 
 test('displays API error message if an error occurs', async () => {
-  const mockError = {
-    message: 'Something went wrong',
-    response: {
-      data: {
-        message: 'Failed to create reservation',
-        errors: {
-          email: 'Invalid email address'
-        }
+  const mockError = new ApiError('Something went wrong', {
+    data: {
+      message: 'Failed to create reservation',
+      errors: {
+        email: 'Invalid email address'
       }
     }
-  }
+  })
 
   renderWithMockedError(mockError)
 
@@ -127,12 +135,12 @@ test('displays API error message if an error occurs', async () => {
 })
 
 test('renders general error message if error is not API-related', async () => {
-  const mockError = { message: 'Something went wrong' }
+  const mockError = new ApiError('Something went wrong', { data: { message: 'Server error' } })
 
   renderWithMockedError(mockError)
 
   await waitFor(() => {
-    screen.getByText(/something went wrong/i)
+    screen.getByText(/server error/i)
   })
 })
 
@@ -143,13 +151,16 @@ function renderWithMockedError(error: ApiError) {
     nextStep: vi.fn(),
     previousStep: vi.fn(),
   })
-  vi.mocked(useApiClient).mockReturnValue({
-    createReservation: vi.fn(),
+  vi.mocked(useCinema).mockReturnValue({
+    apiClient: {
+      createReservation: vi.fn()
+    }
   })
-  vi.mocked(useMutation).mockReturnValue({
+  vi.mocked(useCreateReservation).mockReturnValue({
     mutate: vi.fn(),
     error,
-  } as unknown as UseMutationResult)
+    data: null,
+  })
 
   render(<Form showingId="123" />)
 }

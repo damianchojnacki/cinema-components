@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Create } from '@/components/reservation/Create'
 import { faker } from '@faker-js/faker'
 import Layout from "@/components/common/Layout"
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import {Movie, Showing} from "@/types"
 import {expect, userEvent, within} from "@storybook/test"
 
@@ -13,9 +12,9 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: ({ showing, movie, queryClient }) => (
+  render: ({ showing, movie }) => (
     <Layout>
-      <Create showing={showing} movie={movie} queryClient={queryClient} />
+      <Create showing={showing} movie={movie} />
     </Layout>
   )
 } satisfies Meta<typeof Create>
@@ -48,17 +47,7 @@ export const Default: Story = {
   args: {
     showing,
     movie,
-    queryClient: new QueryClient()
-  },
-  decorators: [
-    (Story, {args}) => {
-      return (
-        <QueryClientProvider client={args.queryClient}>
-          <Story />
-        </QueryClientProvider>
-      )
-    }
-  ],
+  }
 }
 
 export const SelectSeats: Story = {

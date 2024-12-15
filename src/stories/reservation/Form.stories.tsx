@@ -3,7 +3,6 @@ import { Form } from '@/components/reservation/Form'
 import Layout from "@/components/common/Layout"
 import {useReservation} from "@/lib/hooks"
 import {useEffect, useState} from "react"
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query"
 
 const meta = {
   title: 'Reservation/Form',
@@ -33,16 +32,12 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => {
-      const [queryClient] = useState(() => new QueryClient())
-
       const {selectSeats} = useReservation()
 
       useEffect(() => selectSeats(seats), [])
 
       return (
-        <QueryClientProvider client={queryClient}>
-          <Story />
-        </QueryClientProvider>
+        <Story />
       )
     }
   ],

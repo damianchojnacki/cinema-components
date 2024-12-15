@@ -24,18 +24,14 @@ export default defineConfig({
                 'react',
                 'react-dom',
                 'react/jsx-runtime',
-                'next/link',
-                'next/router',
             ],
             output: {
                 // Provide global variables to use in the UMD build
                 // for externalized deps
                 globals: {
                     react: 'React',
-                    'react/jsx-runtime': 'ReactJsxRuntime',
                     'react-dom': 'ReactDOM',
-                    'next/link': 'NextLink',
-                    'next/router': 'NextRouter',
+                    'react/jsx-runtime': 'ReactJsxRuntime',
                 },
             },
             plugins: [

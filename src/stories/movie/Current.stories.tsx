@@ -11,7 +11,6 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  tags: ['autodocs'],
 } satisfies Meta<typeof Current>
 
 export default meta

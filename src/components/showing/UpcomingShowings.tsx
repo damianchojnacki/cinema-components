@@ -3,7 +3,7 @@ import { Summary } from '@/components/movie/Summary'
 import Link from '@/components/common/Link'
 import { Button } from '@/components/ui/button'
 import { Backdrop } from '@/components/movie/Backdrop'
-import { useRoutes } from '@/lib/hooks/useRoutes'
+import { useCinema } from '@/lib/hooks/useCinema'
 import React, { FunctionComponent } from 'react'
 import { Movie } from '@/types/Movie'
 import { Showing } from '@/types/Showing'
@@ -14,7 +14,7 @@ export interface Props {
 }
 
 export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) => {
-  const routes = useRoutes()
+  const {routes} = useCinema()
 
   return (
     <div className="relative overflow-y-auto overflow-x-hidden">
@@ -36,7 +36,7 @@ export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) 
           </Button>
         </Link>
 
-        <List showings={showings} />
+        <List movieId={String(movie.id)} showings={showings}/>
       </div>
     </div>
   )

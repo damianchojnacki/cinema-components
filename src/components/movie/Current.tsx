@@ -3,11 +3,11 @@ import React, { FunctionComponent } from 'react'
 import { Button } from '@/components/ui/button'
 import Link from '@/components/common/Link'
 import { Summary } from '@/components/movie/Summary'
-import { useRoutes } from '@/lib/hooks/useRoutes'
+import { useCinema } from '@/lib/hooks/useCinema'
 
 export const Current: FunctionComponent = () => {
   const { movie } = useCurrentMovie()
-  const routes = useRoutes()
+  const {routes} = useCinema()
 
   // return skeleton if no current movie
   if (movie == null) {

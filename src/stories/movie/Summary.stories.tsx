@@ -32,7 +32,7 @@ export const Default: Story = {
 
     await expect(
       canvas.getByTestId('movie-description').innerText
-    ).toHaveLength(303)
+    ).toHaveLength(203)
 
     await userEvent.click(canvas.getByTestId('movie-description-expand'))
 

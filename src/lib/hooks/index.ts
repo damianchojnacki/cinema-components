@@ -1,4 +1,4 @@
-export * from "./useApiClient"
 export * from "./useCurrentMovie"
 export * from "./useReservation"
-export * from "./useRoutes"
+export * from "./useCinema"
+export * from "./useCreateReservation"

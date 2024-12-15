@@ -1,19 +1,14 @@
-import React, {FunctionComponent, PropsWithChildren, useEffect, useState} from 'react'
+import React, {createElement, FunctionComponent, PropsWithChildren} from 'react'
+import {useCinema} from "@/lib/hooks/useCinema"
 
 const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & PropsWithChildren> = (props) => {
-  const [Component, setComponent] = useState<never>()
+  const {link} = useCinema()
 
-  useEffect(() => {
-    // @ts-ignore
-    void import('next/link').then((Link) => setComponent(Link))
-  }, [])
-
-  if (!Component) {
+  if (!link) {
     return <a {...props} />
   }
 
-  // @ts-ignore
-  return <Component {...props }/>
+  return createElement(link, props, props.children)
 }
 
 export default Link

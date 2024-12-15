@@ -2,20 +2,15 @@ import React from 'react'
 import { render, screen, cleanup } from '@testing-library/react'
 import { vi, test, beforeEach, afterEach, expect } from 'vitest'
 import { Create } from '@/components/reservation/Create'
-import { useRouter } from '@/components/common/useRouter'
-import {Routes, useRoutes} from '@/lib/hooks/useRoutes'
+import {CinemaConfiguration, useCinema} from '@/lib/hooks/useCinema'
 import { useReservation } from '@/lib/hooks/useReservation'
 import { Showing } from '@/types/Showing'
 import { Movie } from '@/types/Movie'
-import { QueryClient } from '@tanstack/react-query'
 import movieFactory from "../../factories/movieFactory"
 
 // Mock dependencies
-vi.mock('@/components/common/useRouter', () => ({
-  useRouter: vi.fn()
-}))
-vi.mock('@/lib/hooks/useRoutes', () => ({
-  useRoutes: vi.fn()
+vi.mock('@/lib/hooks/useCinema', () => ({
+  useCinema: vi.fn()
 }))
 vi.mock('@/lib/hooks/useReservation', () => ({
   useReservation: vi.fn()
@@ -45,8 +40,7 @@ const mockShowing: Showing = {
 }
 
 const mockMovie: Movie = movieFactory.create()
-const mockQueryClient = new QueryClient()
-const mockRoutes: Routes = {
+const mockRoutes: CinemaConfiguration['routes'] = {
   getMoviesPath: () => '/movies',
   getMovieShowingsPath: (id) => `/movies/${id}/showings`,
   getShowingPath: (movieId, id) => `/movies/${movieId}/showings/${id}`
@@ -54,8 +48,9 @@ const mockRoutes: Routes = {
 
 beforeEach(() => {
   cleanup()
-  vi.mocked(useRouter).mockReturnValue({ query: { id: '1' } })
-  vi.mocked(useRoutes).mockReturnValue(mockRoutes)
+  vi.mocked(useCinema).mockReturnValue({
+    routes: mockRoutes
+  })
   vi.mocked(useReservation).mockReturnValue({
     step: 0,
     reservation: null,
@@ -75,7 +70,7 @@ test('renders the SelectSeats component when step is 0', async () => {
     reset: vi.fn()
   })
 
-  render(<Create showing={mockShowing} movie={mockMovie} queryClient={mockQueryClient} />)
+  render(<Create showing={mockShowing} movie={mockMovie} />)
 
   await screen.findByTestId('select-seats')
 })
@@ -87,7 +82,7 @@ test('renders the Form component when step is 1', async () => {
     reset: vi.fn()
   })
 
-  render(<Create showing={mockShowing} movie={mockMovie} queryClient={mockQueryClient} />)
+  render(<Create showing={mockShowing} movie={mockMovie} />)
 
   await screen.findByTestId('form')
 })
@@ -99,7 +94,7 @@ test('renders the Show component when step is 2 and reservation is available', a
     reset: vi.fn()
   })
 
-  render(<Create showing={mockShowing} movie={mockMovie} queryClient={mockQueryClient} />)
+  render(<Create showing={mockShowing} movie={mockMovie} />)
 
   await screen.findByTestId('show-reservation')
 })
@@ -111,7 +106,7 @@ test('renders nothing when step is 2 and no reservation is available', () => {
     reset: vi.fn()
   })
 
-  render(<Create showing={mockShowing} movie={mockMovie} queryClient={mockQueryClient} />)
+  render(<Create showing={mockShowing} movie={mockMovie} />)
 
   expect(screen.queryByTestId('show-reservation')).toBeNull()
 })
@@ -124,7 +119,7 @@ test('resets reservation state on mount', () => {
     reset: mockReset
   })
 
-  render(<Create showing={mockShowing} movie={mockMovie} queryClient={mockQueryClient} />)
+  render(<Create showing={mockShowing} movie={mockMovie} />)
 
   expect(mockReset).toHaveBeenCalledTimes(1)
 })

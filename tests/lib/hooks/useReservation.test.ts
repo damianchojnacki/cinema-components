@@ -33,7 +33,7 @@ test('should update reservation correctly', () => {
   const newReservation: Reservation = { id: '123'}
 
   act(() => {
-    result.current.updateReservation(newReservation)
+    result.current.setReservation(newReservation)
   })
 
   expect(result.current.reservation).toEqual(newReservation)
@@ -67,7 +67,7 @@ test('should reset all values correctly', () => {
 
   act(() => {
     result.current.selectSeats(newSeats)
-    result.current.updateReservation(newReservation)
+    result.current.setReservation(newReservation)
     result.current.nextStep()
     result.current.reset()
   })

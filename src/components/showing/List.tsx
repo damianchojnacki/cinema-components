@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from 'react'
 
 import { Showing } from '@/types/Showing'
-import { useRouter } from '@/components/common/useRouter'
 import Link from '@/components/common/Link'
 import { Button } from '@/components/ui/button'
-import { useRoutes } from '@/lib/hooks/useRoutes'
+import { useCinema } from '@/lib/hooks/useCinema'
 
 export interface Props {
   showings: Showing[]
+  movieId: string
 }
 
 const groupByDate = (showings: Showing[]) => {
@@ -30,9 +30,8 @@ const groupByDate = (showings: Showing[]) => {
   }, {})
 }
 
-export const List: FunctionComponent<Props> = ({ showings }) => {
-  const { query: { id: movieId } } = useRouter()
-  const routes = useRoutes()
+export const List: FunctionComponent<Props> = ({ movieId, showings }) => {
+  const {routes} = useCinema()
 
   const groupedShowings = groupByDate(showings)
 
@@ -47,7 +46,7 @@ export const List: FunctionComponent<Props> = ({ showings }) => {
           <div className="flex gap-2 sm:gap-4 flex-wrap">
             {showings.map((showing) => (
               <Link
-                href={routes?.getShowingPath(movieId as string, String(showing.id)) ?? ''}
+                href={(routes && showing.id) ? routes.getShowingPath(movieId, showing.id) : undefined}
                 key={showing.id}
               >
                 <Button variant="secondary" className="text-xs sm:text-sm font-bold sm:font-medium" suppressHydrationWarning>

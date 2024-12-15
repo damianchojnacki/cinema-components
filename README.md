@@ -27,8 +27,7 @@
 
 ## Requirements
 
-- React & ReactDOM 18
-- Next.js 14
+- React 18
 
 ## Installation
 
@@ -50,42 +49,30 @@ pnpm add @damianchojnacki/cinema
 In your main file e.g. _app.tsx add required providers:
 
 ```tsx
-<ApiClientContextProvider client={client}>
-  <RoutesContextProvider routes={routes}>
-    <Component {...pageProps} />
-  </RoutesContextProvider>
-</ApiClientContextProvider>
-```
+import { Routes, Client, CinemaContextProvider } from '@damianchojnacki/cinema'
+import axios from 'axios'
 
-Routes should resolve paths as below:
+// If your application use different component for navigation between pages e.g Next.js Link component, you should pass it
+// to the providers as a link prop.
+import Link from 'next/link'
 
-```tsx
-import {Routes} from 'cinema'
-
-export const routes: Routes = {
+// Routes should resolve paths as below:
+const routes: Routes = {
   getMoviesPath: () => '/movies',
   getMovieShowingsPath: (id: string) => `/movies/${id}/showings`,
   getShowingPath: (movieId: string, id: string) => `/movies/${movieId}/showings/${id}`
 }
-```
 
-API Client should provide method to create reservation:
-
-```tsx
-import { createReservation } from '@/utils/api/reservations'
-import { Client } from 'cinema-next'
-
-export const client: Client = {
-  createReservation: async (showingId, data) => {
-    const response = await createReservation(showingId, data)
-
-    if ((response?.data) == null) {
-      throw new Error('Could not create reservation.')
-    }
-
-    return response.data
-  }
+// API Client should provide method to create reservation:
+const client: Client = {
+  createReservation: (showingId, data) => axios.post(`/api/${showingId}/reservations`, data)
 }
+
+return (
+  <CinemaContextProvider apiClient={apiClient} routes={routes} link={Link}>
+    <Component {...pageProps} />
+  </CinemaContextProvider>
+)
 ```
 
 ### Importing Components
@@ -93,7 +80,7 @@ export const client: Client = {
 ```tsx
 import { Movie } from 'cinema'
 
-const App = ({movies}) => {
+const App = ({ movies }) => {
   return (
     <div>
       <Movie.List movies={movies}/>

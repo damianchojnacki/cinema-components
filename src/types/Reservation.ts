@@ -7,4 +7,4 @@ export interface Reservation {
   qr_url?: string
 }
 
-export type CreateReservationParams = Pick<Reservation, 'email' | 'seats'>
+export type CreateReservationPayload = Pick<Reservation, 'email' | 'seats'>
