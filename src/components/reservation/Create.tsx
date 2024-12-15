@@ -17,7 +17,7 @@ export interface Props {
 }
 
 export const Create: FunctionComponent<Props> = ({ showing, movie }) => {
-  const {routes} = useCinema()
+  const { routes } = useCinema()
 
   const { step, reservation, reset } = useReservation()
 
@@ -25,7 +25,7 @@ export const Create: FunctionComponent<Props> = ({ showing, movie }) => {
     reset()
   }, [])
 
-  function renderStep () {
+  function renderStep() {
     switch (step) {
       case 0:
         return <SelectSeats showing={showing} />
@@ -48,8 +48,12 @@ export const Create: FunctionComponent<Props> = ({ showing, movie }) => {
         <Link href={(movie.id && routes) ? routes.getMovieShowingsPath(movie.id) : undefined} className="block md:inline text-center mb-4">
           <Button size="lg" variant="default" className="text-lg font-bold whitespace-normal h-auto py-2">
             <svg
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-              stroke="currentColor" className="size-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
             </svg>

@@ -1,4 +1,4 @@
-import React, {UIEvent, FunctionComponent, useState, useCallback} from 'react'
+import React, { UIEvent, FunctionComponent, useState, useCallback } from 'react'
 import { Movie } from '@/types/Movie'
 import { Card } from '@/components/movie/Card'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
@@ -16,17 +16,17 @@ export const List: FunctionComponent<Props> = ({ movies, handleLoadNextPage }) =
 
   const throttledLoadNextPage = useCallback(
     throttle(() => handleLoadNextPage(), 1000),
-    [handleLoadNextPage]
+    [handleLoadNextPage],
   )
 
   const updateCurrentMovie = (cardHeight: number, eventTarget: HTMLDivElement) => {
     const { scrollTop, offsetHeight, children } = eventTarget
 
-    if(scrollTop > 10 && !isScrolled) {
+    if (scrollTop > 10 && !isScrolled) {
       setIsScrolled(true)
     }
 
-    if(scrollTop == 0 && isScrolled) {
+    if (scrollTop == 0 && isScrolled) {
       setIsScrolled(false)
     }
 

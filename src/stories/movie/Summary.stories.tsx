@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Summary } from '@/components/movie/Summary'
-import {expect, userEvent, within} from "@storybook/test"
+import { expect, userEvent, within } from '@storybook/test'
 
 const meta = {
   title: 'Movie/Summary',
@@ -31,13 +31,13 @@ export const Default: Story = {
     const canvas = within(canvasElement)
 
     await expect(
-      canvas.getByTestId('movie-description').innerText
+      canvas.getByTestId('movie-description').innerText,
     ).toHaveLength(203)
 
     await userEvent.click(canvas.getByTestId('movie-description-expand'))
 
     await expect(
-      canvas.getByTestId('movie-description').innerText
+      canvas.getByTestId('movie-description').innerText,
     ).toHaveLength(334)
   },
 }

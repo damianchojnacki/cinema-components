@@ -17,7 +17,7 @@ const groupByDate = (showings: Showing[]) => {
     const date = new Date(showing.starts_at).toLocaleDateString(['en-US'], {
       weekday: 'long',
       day: 'numeric',
-      month: 'long'
+      month: 'long',
     })
 
     if (!acc[date]) {
@@ -31,7 +31,7 @@ const groupByDate = (showings: Showing[]) => {
 }
 
 export const List: FunctionComponent<Props> = ({ movieId, showings }) => {
-  const {routes} = useCinema()
+  const { routes } = useCinema()
 
   const groupedShowings = groupByDate(showings)
 

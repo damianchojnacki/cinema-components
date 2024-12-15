@@ -13,8 +13,6 @@ export default [
             'dist/**',
             'node_modules/**',
             'coverage/**',
-            // 'src/stories/**',
-            // 'tests/**',
             'tailwind.config.js',
             'postcss.config.cjs',
             'eslint.config.mjs',
@@ -33,15 +31,13 @@ export default [
             "react-hooks/exhaustive-deps": 'off'
         },
     },
-    {
-        plugins: {
-            '@stylistic': stylistic
-        },
-        rules: {
-            '@stylistic/jsx-quotes': ['warn', 'prefer-double'],
-            '@stylistic/semi': ['warn', 'never'],
-        }
-    },
+    stylistic.configs.customize({
+        indent: 2,
+        quotes: 'single',
+        semi: false,
+        jsx: true,
+        arrowParens: true,
+    }),
     {
         languageOptions: {
             parserOptions: {
@@ -55,7 +51,10 @@ export default [
     ...tseslint.configs.stylisticTypeChecked,
     {
         rules: {
-            "@typescript-eslint/ban-ts-comment": "off"
+            "@typescript-eslint/ban-ts-comment": "off",
+            '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+            '@stylistic/operator-linebreak': ['error', 'none'],
+            '@stylistic/multiline-ternary': "off",
         }
     }
 ]

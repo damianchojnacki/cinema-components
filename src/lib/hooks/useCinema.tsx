@@ -3,9 +3,9 @@ import React, {
   useContext,
   FunctionComponent,
   PropsWithChildren,
-  ComponentType
+  ComponentType,
 } from 'react'
-import {CreateReservationPayload, Reservation} from "@/types/Reservation"
+import { CreateReservationPayload, Reservation } from '@/types/Reservation'
 
 export interface ApiResponse {
   data: {
@@ -49,7 +49,8 @@ export const CinemaContextProvider: FunctionComponent<Props> = ({ children, rout
       routes,
       apiClient,
       link,
-    }}>
+    }}
+    >
       {children}
     </CinemaContext.Provider>
   )

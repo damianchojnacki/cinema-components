@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import {Alert, AlertDescription, AlertTitle} from '@/components/ui/alert'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 const meta = {
   title: 'UI/Alert',
@@ -13,10 +13,10 @@ const meta = {
       control: 'select',
       options: [
         'default',
-        'destructive'
-      ]
-    }
-  }
+        'destructive',
+      ],
+    },
+  },
 } satisfies Meta<typeof Alert>
 
 export default meta
@@ -25,14 +25,14 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     children: 'Lorem ipsum dolor sit amet',
-  }
+  },
 }
 
 export const Destructive: Story = {
   args: {
     children: 'Lorem ipsum dolor sit amet',
-    variant: 'destructive'
-  }
+    variant: 'destructive',
+  },
 }
 
 export const WithTitle: Story = {
@@ -41,6 +41,5 @@ export const WithTitle: Story = {
       <AlertTitle>Lorem ipsum</AlertTitle>
       <AlertDescription>Excepteur sint occaecat cupidatat non proident.</AlertDescription>
     </Alert>
-  )
+  ),
 }
-

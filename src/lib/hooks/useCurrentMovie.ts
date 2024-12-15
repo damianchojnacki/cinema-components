@@ -6,5 +6,5 @@ export const useCurrentMovie = create<{
   update: (data: Movie | null) => void
 }>()((set) => ({
   movie: null,
-  update: (data) => set(() => ({ movie: data }))
+  update: (data) => set(() => ({ movie: data })),
 }))

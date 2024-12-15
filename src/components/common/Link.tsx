@@ -1,8 +1,8 @@
-import React, {createElement, FunctionComponent, PropsWithChildren} from 'react'
-import {useCinema} from "@/lib/hooks/useCinema"
+import React, { createElement, FunctionComponent, PropsWithChildren } from 'react'
+import { useCinema } from '@/lib/hooks/useCinema'
 
 const Link: FunctionComponent<React.AnchorHTMLAttributes<HTMLAnchorElement> & PropsWithChildren> = (props) => {
-  const {link} = useCinema()
+  const { link } = useCinema()
 
   if (!link) {
     return <a {...props} />

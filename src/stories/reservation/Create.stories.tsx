@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Create } from '@/components/reservation/Create'
 import { faker } from '@faker-js/faker'
-import Layout from "@/components/common/Layout"
-import {Movie, Showing} from "@/types"
-import {expect, userEvent, within} from "@storybook/test"
+import Layout from '@/components/common/Layout'
+import { Movie, Showing } from '@/types'
+import { expect, userEvent, within } from '@storybook/test'
 
 const meta = {
   title: 'Reservation/Create',
@@ -16,7 +16,7 @@ const meta = {
     <Layout>
       <Create showing={showing} movie={movie} />
     </Layout>
-  )
+  ),
 } satisfies Meta<typeof Create>
 
 export default meta
@@ -25,12 +25,12 @@ type Story = StoryObj<typeof meta>
 
 const showing: Showing = {
   id: '1',
-  starts_at: faker.date.between({from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7)}).toISOString(),
+  starts_at: faker.date.between({ from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7) }).toISOString(),
   rows: 5,
   columns: 6,
   seats_taken: [
-    [2, 2], [2, 3]
-  ]
+    [2, 2], [2, 3],
+  ],
 }
 
 const movie: Movie = {
@@ -47,7 +47,7 @@ export const Default: Story = {
   args: {
     showing,
     movie,
-  }
+  },
 }
 
 export const SelectSeats: Story = {
@@ -56,11 +56,11 @@ export const SelectSeats: Story = {
     const canvas = within(canvasElement)
 
     await userEvent.click(canvas.getByText('1-3'), {
-      delay: 500
+      delay: 500,
     })
 
     await userEvent.click(canvas.getByText('1-4'), {
-      delay: 500
+      delay: 500,
     })
 
     await userEvent.click(canvas.getByText('Next'))
@@ -68,20 +68,20 @@ export const SelectSeats: Story = {
     // 👇 Assert DOM structure
     await expect(
       canvas.getByText(
-        'Selected seats:'
-      )
+        'Selected seats:',
+      ),
     ).toBeInTheDocument()
 
     await expect(
       canvas.getByText(
-        '1-3'
-      )
+        '1-3',
+      ),
     ).toBeInTheDocument()
 
     await expect(
       canvas.getByText(
-        '1-4'
-      )
+        '1-4',
+      ),
     ).toBeInTheDocument()
   },
 }

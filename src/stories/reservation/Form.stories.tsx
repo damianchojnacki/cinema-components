@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Form } from '@/components/reservation/Form'
-import Layout from "@/components/common/Layout"
-import {useReservation} from "@/lib/hooks"
-import {useEffect, useState} from "react"
+import Layout from '@/components/common/Layout'
+import { useReservation } from '@/lib/hooks'
+import { useEffect } from 'react'
 
 const meta = {
   title: 'Reservation/Form',
@@ -15,7 +15,7 @@ const meta = {
     <Layout className="!min-h-0 p-5 rounded-lg">
       <Form showingId={showingId} />
     </Layout>
-  )
+  ),
 } satisfies Meta<typeof Form>
 
 export default meta
@@ -23,7 +23,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const seats = [
-  [0, 1]
+  [0, 1],
 ]
 
 export const Default: Story = {
@@ -32,13 +32,13 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => {
-      const {selectSeats} = useReservation()
+      const { selectSeats } = useReservation()
 
       useEffect(() => selectSeats(seats), [])
 
       return (
         <Story />
       )
-    }
+    },
   ],
 }

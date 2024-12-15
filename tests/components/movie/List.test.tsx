@@ -4,7 +4,7 @@ import { expect, vi, afterEach, beforeEach, test } from 'vitest'
 import { List } from '@/components/movie/List'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
 import { Movie } from '@/types/Movie'
-import movieFactory from "../../factories/movieFactory"
+import movieFactory from '../../factories/movieFactory'
 
 const mockScrollProperties = (element: HTMLElement, { scrollTop, offsetHeight, scrollHeight }: Record<string, number>) => {
   Object.defineProperty(element, 'scrollTop', { value: scrollTop, writable: true })
@@ -13,7 +13,7 @@ const mockScrollProperties = (element: HTMLElement, { scrollTop, offsetHeight, s
 }
 
 vi.mock('@/lib/hooks/useCurrentMovie', () => ({
-  useCurrentMovie: vi.fn()
+  useCurrentMovie: vi.fn(),
 }))
 
 const mockMovies: Movie[] = movieFactory.createMany(12)

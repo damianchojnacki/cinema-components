@@ -7,17 +7,17 @@ import { useCinema } from '@/lib/hooks/useCinema'
 
 export const Current: FunctionComponent = () => {
   const { movie } = useCurrentMovie()
-  const {routes} = useCinema()
+  const { routes } = useCinema()
 
   // return skeleton if no current movie
   if (movie == null) {
     return (
       <div className="flex-grow px-4 xl:px-8 flex flex-col justify-center items-start">
-        <div className="h-9 xs:h-[3.75rem] sm:h-24 mb-2 w-3/4 bg-gray-500 rounded-lg animate-pulse"/>
+        <div className="h-9 xs:h-[3.75rem] sm:h-24 mb-2 w-3/4 bg-gray-500 rounded-lg animate-pulse" />
 
-        <div className="h-[75px] w-1/2 mb-2 bg-gray-500 rounded-lg animate-pulse"/>
+        <div className="h-[75px] w-1/2 mb-2 bg-gray-500 rounded-lg animate-pulse" />
 
-        <div className="h-5 w-[100px] mb-4 bg-gray-500 rounded-lg animate-pulse"/>
+        <div className="h-5 w-[100px] mb-4 bg-gray-500 rounded-lg animate-pulse" />
 
         <Button variant="secondary" className="xs:px-8 xs:py-5 xs:text-lg font-bold">Get Tickets</Button>
       </div>
@@ -26,7 +26,7 @@ export const Current: FunctionComponent = () => {
 
   return (
     <div className="flex-grow px-4 xl:px-8 flex flex-col justify-center items-start">
-      <Summary movie={movie}/>
+      <Summary movie={movie} />
 
       <Link href={routes?.getMovieShowingsPath(movie.id!) ?? ''} className="block md:inline text-center">
         <Button variant="secondary" className="xs:px-8 xs:py-5 xs:text-lg font-bold">Get Tickets</Button>

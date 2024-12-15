@@ -30,7 +30,7 @@ test('should update seats correctly', () => {
 
 test('should update reservation correctly', () => {
   const { result } = renderHook(() => useReservation())
-  const newReservation: Reservation = { id: '123'}
+  const newReservation: Reservation = { id: '123' }
 
   act(() => {
     result.current.setReservation(newReservation)

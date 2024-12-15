@@ -14,7 +14,7 @@ export interface Props {
 }
 
 export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) => {
-  const {routes} = useCinema()
+  const { routes } = useCinema()
 
   return (
     <div className="relative overflow-y-auto overflow-x-hidden">
@@ -26,8 +26,12 @@ export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) 
         <Link href={routes?.getMoviesPath() ?? ''} className="block md:inline text-center">
           <Button size="lg" variant="default" className="text-lg font-bold">
             <svg
-              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-              stroke="currentColor" className="size-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
             </svg>
@@ -36,7 +40,7 @@ export const UpcomingShowings: FunctionComponent<Props> = ({ movie, showings }) 
           </Button>
         </Link>
 
-        <List movieId={String(movie.id)} showings={showings}/>
+        <List movieId={String(movie.id)} showings={showings} />
       </div>
     </div>
   )

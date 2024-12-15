@@ -14,7 +14,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
   const toggleSeatSelection = (row: number, col: number) => {
     // Check if the seat is already selected
     const seatIndex = selectedSeats.findIndex(
-      (seat) => seat[0] === row && seat[1] === col
+      (seat) => seat[0] === row && seat[1] === col,
     )
 
     if (seatIndex > -1) {
@@ -31,7 +31,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
   const isSeatTaken = (row: number, col: number) => {
     if (showing.seats_taken != null) {
       return showing.seats_taken.some(
-        (seat: number[]) => seat[0] === row && seat[1] === col
+        (seat: number[]) => seat[0] === row && seat[1] === col,
       )
     }
 
@@ -48,7 +48,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
         <h2 className="xs:text-lg font-medium my-4 p-1" suppressHydrationWarning>
           {`Showtime: ${new Date(showing.starts_at ?? Date.now()).toLocaleString(['en-US'], {
             dateStyle: 'medium',
-            timeStyle: 'short'
+            timeStyle: 'short',
           })}`}
         </h2>
 
@@ -59,7 +59,7 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
         className="grid w-full md:w-fit md:mx-0 max-w-[93vw] overflow-x-auto gap-2 place-items-center p-1"
         style={{
           gridTemplateRows: `repeat(${showing.rows}, 1fr)`,
-          gridTemplateColumns: `repeat(${showing.columns}, 1fr)`
+          gridTemplateColumns: `repeat(${showing.columns}, 1fr)`,
         }}
       >
         {Array.from({ length: showing.rows ?? 1 }, (_, row) =>
@@ -71,19 +71,15 @@ export const SelectSeats: FunctionComponent<Props> = ({ showing }) => {
               <button
                 key={`${row}-${col}`}
                 className={`w-14 h-14 sm:w-16 sm:h-16 font-bold rounded-lg focus:outline-none
-                  ${isTaken
-                    ? 'bg-gray-500 text-white cursor-not-allowed'
-                  : isSelected
-                    ? 'bg-green-700 text-white'
-                    : 'bg-white text-black transform hover:scale-105 transition'
-                  }`}
+                  ${isTaken ? 'bg-gray-500 text-white cursor-not-allowed' : isSelected ? 'bg-green-700 text-white' : 'bg-white text-black transform hover:scale-105 transition'
+              }`}
                 onClick={() => !isTaken && toggleSeatSelection(row, col)}
                 disabled={isTaken}
               >
                 {`${row + 1}-${col + 1}`}
               </button>
             )
-          })
+          }),
         )}
       </div>
     </div>

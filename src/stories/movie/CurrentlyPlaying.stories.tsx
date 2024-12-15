@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { CurrentlyPlaying } from '@/components/movie/CurrentlyPlaying'
-import Layout from "@/components/common/Layout"
+import Layout from '@/components/common/Layout'
 import { faker } from '@faker-js/faker'
-import {Movie} from "@/types/Movie"
-import {expect, userEvent, within} from "@storybook/test"
+import { Movie } from '@/types/Movie'
+import { expect, userEvent, within } from '@storybook/test'
 
 const meta = {
   title: 'Movie/CurrentlyPlaying',
@@ -17,11 +17,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 function getRandomMovies(): Movie[] {
-  return Array.from({length: 12}).map((_, i) => ({
+  return Array.from({ length: 12 }).map((_, i) => ({
     id: (i + 1).toString(),
-    title: faker.lorem.sentence({min: 1, max: 4}),
-    description: faker.lorem.lines({min: 3, max: 10}),
-    rating: faker.number.float({min: 1, max: 9, fractionDigits: 1}).toString(),
+    title: faker.lorem.sentence({ min: 1, max: 4 }),
+    description: faker.lorem.lines({ min: 3, max: 10 }),
+    rating: faker.number.float({ min: 1, max: 9, fractionDigits: 1 }).toString(),
     release_date: faker.date.future().toLocaleDateString(['en-US'], {
       year: 'numeric',
       month: '2-digit',
@@ -36,7 +36,7 @@ export const Default: Story = {
   args: {
     movies: getRandomMovies(),
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    handleLoadNextPage: () => {}
+    handleLoadNextPage: () => {},
   },
   render: (props) => (
     <Layout>
@@ -47,21 +47,21 @@ export const Default: Story = {
     const canvas = within(canvasElement)
 
     await expect(
-      canvas.getByTestId('movie-card-1')
+      canvas.getByTestId('movie-card-1'),
     ).toBeVisible()
 
     await userEvent.click(canvas.getByTestId('movie-card-1'), {
-      delay: 500
+      delay: 500,
     })
 
     await userEvent.keyboard('{Tab}{Tab}{Tab}{Tab}{Tab}')
 
     await userEvent.keyboard('{Tab}', {
-      delay: 1000
+      delay: 1000,
     })
 
     await expect(
-      canvas.getByTestId('movie-card-7')
+      canvas.getByTestId('movie-card-7'),
     ).toHaveClass('ring-2')
   },
 }

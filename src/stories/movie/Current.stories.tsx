@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Current } from '@/components/movie/Current'
-import {useCurrentMovie} from "@/lib/hooks"
-import {useEffect} from "react"
-import {Layout} from "@/components/common"
-import {Movie} from "@/types"
+import { useCurrentMovie } from '@/lib/hooks'
+import { useEffect } from 'react'
+import { Layout } from '@/components/common'
+import { Movie } from '@/types'
 
 const meta = {
   title: 'Movie/Current',
@@ -29,7 +29,7 @@ const movie: Movie = {
 export const Default: Story = {
   decorators: [
     (Story) => {
-      const {update} = useCurrentMovie()
+      const { update } = useCurrentMovie()
 
       useEffect(() => update(movie), [])
 
@@ -38,14 +38,14 @@ export const Default: Story = {
           <Story />
         </Layout>
       )
-    }
+    },
   ],
 }
 
 export const Skeleton: Story = {
   decorators: [
     (Story) => {
-      const {update} = useCurrentMovie()
+      const { update } = useCurrentMovie()
 
       useEffect(() => update(null), [])
 
@@ -54,6 +54,6 @@ export const Skeleton: Story = {
           <Story />
         </Layout>
       )
-    }
+    },
   ],
 }

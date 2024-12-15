@@ -7,7 +7,7 @@ export const Summary: FunctionComponent = () => {
   const price = useMemo(() => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
     }).format(seats.length * 9)
   }, [seats])
 
@@ -25,7 +25,9 @@ export const Summary: FunctionComponent = () => {
       ))}
 
       <p className="mt-4">
-        Total: <span className="font-medium">{price}</span>
+        Total:
+        {' '}
+        <span className="font-medium">{price}</span>
       </p>
     </div>
   )

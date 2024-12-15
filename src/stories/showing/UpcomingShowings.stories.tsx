@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { UpcomingShowings } from '@/components/showing/UpcomingShowings'
 import { faker } from '@faker-js/faker'
-import {Showing} from "@/types/Showing"
-import Layout from "@/components/common/Layout"
-import {Movie} from "@/types"
+import { Showing } from '@/types/Showing'
+import Layout from '@/components/common/Layout'
+import { Movie } from '@/types'
 
 const meta = {
   title: 'Showing/UpcomingShowings',
@@ -12,11 +12,11 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  render: ({movie, showings}) => (
+  render: ({ movie, showings }) => (
     <Layout>
       <UpcomingShowings movie={movie} showings={showings} />
     </Layout>
-  )
+  ),
 } satisfies Meta<typeof UpcomingShowings>
 
 export default meta
@@ -24,9 +24,9 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 function getRandomShowings(): Showing[] {
-  return Array.from({length: 20}).map((_, i) => ({
+  return Array.from({ length: 20 }).map((_, i) => ({
     id: i.toString(),
-    starts_at: faker.date.between({from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7)}).toISOString(),
+    starts_at: faker.date.between({ from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7) }).toISOString(),
   })).sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
 }
 
@@ -43,6 +43,6 @@ const movie: Movie = {
 export const Default: Story = {
   args: {
     showings: getRandomShowings(),
-    movie
+    movie,
   },
 }

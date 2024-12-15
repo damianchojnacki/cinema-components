@@ -1,13 +1,13 @@
-import {useState} from "react"
-import {Reservation} from "@/types"
-import {CreateReservationPayload} from "@/types/Reservation"
-import {ApiError, useCinema} from "@/lib/hooks/useCinema"
+import { useState } from 'react'
+import { Reservation } from '@/types'
+import { CreateReservationPayload } from '@/types/Reservation'
+import { ApiError, useCinema } from '@/lib/hooks/useCinema'
 
 export const useCreateReservation = () => {
   const [error, setError] = useState<Error | ApiError | null>(null)
   const [data, setData] = useState<Reservation | null>(null)
 
-  const {apiClient} = useCinema()
+  const { apiClient } = useCinema()
 
   const mutate = async (showingId: string, payload: CreateReservationPayload) => {
     if (apiClient == null) {
@@ -27,5 +27,5 @@ export const useCreateReservation = () => {
     }
   }
 
-  return {data, error, mutate}
+  return { data, error, mutate }
 }

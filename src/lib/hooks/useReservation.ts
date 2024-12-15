@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import {Reservation} from '@/types/Reservation'
+import { Reservation } from '@/types/Reservation'
 
 export const useReservation = create<{
   step: number
@@ -18,5 +18,5 @@ export const useReservation = create<{
   setReservation: (reservation: Reservation) => set((data) => ({ ...data, reservation })),
   nextStep: () => set((data) => ({ ...data, step: data.step + 1 })),
   previousStep: () => set((data) => ({ ...data, step: data.step - 1 })),
-  reset: () => set(() => ({ step: 0, seats: [], reservation: undefined }))
+  reset: () => set(() => ({ step: 0, seats: [], reservation: undefined })),
 }))

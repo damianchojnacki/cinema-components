@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { List } from '@/components/showing/List'
-import Layout from "@/components/common/Layout"
+import Layout from '@/components/common/Layout'
 import { faker } from '@faker-js/faker'
-import {Showing} from "@/types/Showing"
+import { Showing } from '@/types/Showing'
 
 const meta = {
   title: 'Showing/List',
@@ -11,20 +11,20 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  render: ({movieId, showings}) => (
+  render: ({ movieId, showings }) => (
     <Layout className="!min-h-0 p-5 rounded-lg">
       <List movieId={movieId} showings={showings} />
     </Layout>
-  )
+  ),
 } satisfies Meta<typeof List>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 function getRandomShowings(): Showing[] {
-  return Array.from({length: 20}).map((_, i) => ({
+  return Array.from({ length: 20 }).map((_, i) => ({
     id: i.toString(),
-    starts_at: faker.date.between({from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7)}).toISOString(),
+    starts_at: faker.date.between({ from: new Date(), to: new Date(Date.now() + 1000 * 3600 * 24 * 7) }).toISOString(),
   })).sort((a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime())
 }
 

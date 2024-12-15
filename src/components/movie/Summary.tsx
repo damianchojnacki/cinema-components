@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Movie } from '@/types/Movie'
 
 export interface Props {
@@ -21,7 +21,9 @@ export const Summary: FunctionComponent<Props> = ({ movie }) => {
       </h1>
 
       <p className="md:w-1/2 mb-2 text-sm md:text-base" data-testid="movie-description">
-        {showFullDescription ? movie.description : (
+        {showFullDescription ? (
+          movie.description
+        ) : (
           <>
             {movie.description?.substring(0, descriptionLimit)}
             <button className="font-bold" onClick={() => setShowFullDescription(true)} data-testid="movie-description-expand">...</button>
@@ -31,8 +33,12 @@ export const Summary: FunctionComponent<Props> = ({ movie }) => {
 
       <p className="flex items-center gap-1 font-medium mb-4">
         <svg
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
-          stroke="currentColor" className="size-5"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
         >
           <defs>
             <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -49,7 +55,11 @@ export const Summary: FunctionComponent<Props> = ({ movie }) => {
           />
         </svg>
 
-        <span>{movie.rating} / 10</span>
+        <span>
+          {movie.rating}
+          {' '}
+          / 10
+        </span>
       </p>
     </>
   )

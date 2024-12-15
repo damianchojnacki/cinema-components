@@ -1,14 +1,14 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react'
 import { vi, test, beforeEach, afterEach, expect } from 'vitest'
-import {Form} from '@/components/reservation/Form'
+import { Form } from '@/components/reservation/Form'
 import { useReservation } from '@/lib/hooks/useReservation'
-import {useCinema, ApiError} from '@/lib/hooks/useCinema'
-import {useCreateReservation} from '@/lib/hooks/useCreateReservation'
+import { useCinema, ApiError } from '@/lib/hooks/useCinema'
+import { useCreateReservation } from '@/lib/hooks/useCreateReservation'
 
 // Mock hooks and components
 vi.mock('@/lib/hooks/useReservation', () => ({
-  useReservation: vi.fn()
+  useReservation: vi.fn(),
 }))
 vi.mock('@/lib/hooks/useCinema', async (importOriginal) => {
   const actual = await importOriginal()
@@ -19,10 +19,10 @@ vi.mock('@/lib/hooks/useCinema', async (importOriginal) => {
   }
 })
 vi.mock('@/components/reservation/Summary', () => ({
-  Summary: () => <div data-testid="summary" />
+  Summary: () => <div data-testid="summary" />,
 }))
 vi.mock('@/lib/hooks/useCreateReservation', () => ({
-  useCreateReservation: vi.fn()
+  useCreateReservation: vi.fn(),
 }))
 
 beforeEach(() => {
@@ -40,12 +40,12 @@ test('renders form components and Summary', () => {
     seats: [[1, 2]],
     updateReservation: vi.fn(),
     nextStep: vi.fn(),
-    previousStep: vi.fn()
+    previousStep: vi.fn(),
   })
   vi.mocked(useCinema).mockReturnValue({
     apiClient: {
-      createReservation: vi.fn()
-    }
+      createReservation: vi.fn(),
+    },
   })
   vi.mocked(useCreateReservation).mockReturnValue({
     mutate: vi.fn(),
@@ -71,12 +71,12 @@ test('submits form data and calls mutate function', async () => {
     seats: [[1, 2]],
     updateReservation: vi.fn(),
     nextStep: mockNextStep,
-    previousStep: vi.fn()
+    previousStep: vi.fn(),
   })
   vi.mocked(useCinema).mockReturnValue({
     apiClient: {
-      createReservation: vi.fn()
-    }
+      createReservation: vi.fn(),
+    },
   })
   vi.mocked(useCreateReservation).mockReturnValue({
     mutate: mockMutate,
@@ -87,7 +87,7 @@ test('submits form data and calls mutate function', async () => {
   // Act
   render(<Form showingId="123" />)
   fireEvent.change(screen.getByPlaceholderText('user@example.com'), {
-    target: { value: 'test@example.com' }
+    target: { value: 'test@example.com' },
   })
   fireEvent.click(screen.getByRole('button', { name: /submit/i }))
 
@@ -95,7 +95,7 @@ test('submits form data and calls mutate function', async () => {
   await waitFor(() => {
     expect(mockMutate).toHaveBeenCalledWith('123', {
       email: 'test@example.com',
-      seats: [[1, 2]]
+      seats: [[1, 2]],
     })
   })
 })
@@ -107,7 +107,7 @@ test('calls previousStep when "Change seats" is clicked', () => {
     seats: [[1, 2]],
     updateReservation: vi.fn(),
     nextStep: vi.fn(),
-    previousStep: mockPreviousStep
+    previousStep: mockPreviousStep,
   })
 
   render(<Form showingId="123" />)
@@ -121,9 +121,9 @@ test('displays API error message if an error occurs', async () => {
     data: {
       message: 'Failed to create reservation',
       errors: {
-        email: 'Invalid email address'
-      }
-    }
+        email: 'Invalid email address',
+      },
+    },
   })
 
   renderWithMockedError(mockError)
@@ -153,8 +153,8 @@ function renderWithMockedError(error: ApiError) {
   })
   vi.mocked(useCinema).mockReturnValue({
     apiClient: {
-      createReservation: vi.fn()
-    }
+      createReservation: vi.fn(),
+    },
   })
   vi.mocked(useCreateReservation).mockReturnValue({
     mutate: vi.fn(),

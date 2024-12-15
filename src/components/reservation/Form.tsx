@@ -1,11 +1,11 @@
-import React, {FormEvent, FunctionComponent, useEffect, useState} from 'react'
+import React, { FormEvent, FunctionComponent, useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useReservation } from '@/lib/hooks/useReservation'
 import { Label } from '@/components/ui/label'
 import { Alert } from '@/components/ui/alert'
 import { Summary } from '@/components/reservation/Summary'
-import {useCreateReservation} from "@/lib/hooks/useCreateReservation"
+import { useCreateReservation } from '@/lib/hooks/useCreateReservation'
 
 export interface Props {
   showingId: string
@@ -17,7 +17,7 @@ export const Form: FunctionComponent<Props> = ({ showingId }) => {
   const { data, mutate, error } = useCreateReservation()
 
   const [formData, setFormData] = useState({
-      email: ''
+    email: '',
   })
 
   useEffect(() => {
@@ -29,16 +29,16 @@ export const Form: FunctionComponent<Props> = ({ showingId }) => {
     nextStep()
   }, [data])
 
-  function handleSubmit (e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     void mutate(showingId, {
       ...formData,
-      seats
+      seats,
     })
   }
 
-  function renderErrors () {
+  function renderErrors() {
     if (error == null) {
       return <></>
     }
@@ -84,7 +84,7 @@ export const Form: FunctionComponent<Props> = ({ showingId }) => {
           required
           className="w-64 mb-2"
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
 
         <div className="flex gap-2">

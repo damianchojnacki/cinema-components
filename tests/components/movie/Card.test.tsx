@@ -3,10 +3,10 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { expect, vi, test, beforeEach, afterEach } from 'vitest'
 import { Card } from '@/components/movie/Card'
 import { useCurrentMovie } from '@/lib/hooks/useCurrentMovie'
-import movieFactory from "../../factories/movieFactory"
+import movieFactory from '../../factories/movieFactory'
 
 vi.mock('@/lib/hooks/useCurrentMovie', () => ({
-  useCurrentMovie: vi.fn()
+  useCurrentMovie: vi.fn(),
 }))
 
 const mockMovie = movieFactory.create()
@@ -62,7 +62,7 @@ test('does not call update function on other key presses', () => {
 test('applies ring styling when the current movie matches the card movie', async () => {
   vi.mocked(useCurrentMovie).mockReturnValue({
     movie: mockMovie,
-    update: mockUpdate
+    update: mockUpdate,
   })
 
   render(<Card movie={mockMovie} />)
@@ -75,7 +75,7 @@ test('applies ring styling when the current movie matches the card movie', async
 test('does not apply ring styling when the current movie does not match the card movie', async () => {
   vi.mocked(useCurrentMovie).mockReturnValue({
     movie: { id: '2', title: 'Another Movie', poster_url: 'https://example.com/another-poster.jpg' },
-    update: mockUpdate
+    update: mockUpdate,
   })
 
   render(<Card movie={mockMovie} />)

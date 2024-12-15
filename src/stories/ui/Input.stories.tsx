@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Input } from '@/components/ui/input'
-import {Label} from "@/components/ui"
+import { Label } from '@/components/ui'
 
 const meta = {
   title: 'UI/Input',
@@ -16,20 +16,19 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    placeholder: 'Name'
-  }
+    placeholder: 'Name',
+  },
 }
 
 export const WithLabel: Story = {
   args: {
     placeholder: 'Name',
-    id: 'name'
+    id: 'name',
   },
   render: (props) => (
     <>
       <Label htmlFor={props.id}>Name</Label>
       <Input {...props} />
     </>
-  )
+  ),
 }
-

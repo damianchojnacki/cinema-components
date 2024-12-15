@@ -11,7 +11,10 @@ export const Show: FunctionComponent<Props> = ({ reservation }) => {
     <div className="mt-4 md:w-1/3">
       <Summary />
 
-      <p>Email: <span className="font-medium">{reservation.email}</span></p>
+      <p>
+        Email:
+        <span className="font-medium">{reservation.email}</span>
+      </p>
 
       <p className="my-4">Please show QR Code below to the cinema staff:</p>
 
